@@ -41,10 +41,6 @@
   outline: none;
 }
 
-.loginWarp button {
-  width: 100px;
-}
-
 .btnWarp {
   display: flex;
   justify-content: space-between;

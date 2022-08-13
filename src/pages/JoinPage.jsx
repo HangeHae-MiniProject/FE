@@ -1,16 +1,13 @@
 import React from "react";
-import Btn from "../components/elements/Btn";
-import styles from "../css_modules/JoinPage.module.css"
+import Layout from "../components/common/Layout";
+import Join from "../components/component/Join";
 
 const JoinPage = () => {
   return (
-    <div className={styles.joinWarp}>
-      <h2>SIGN UP</h2>
-      <input type="text" placeholder="ID" />
-      <input type="text" placeholder="PW" />
-      <Btn>JOIN</Btn>
-    </div>
-  )
-}
+    <Layout>
+      <Join />
+    </Layout>
+  );
+};
 
 export default JoinPage;

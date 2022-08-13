@@ -1,12 +1,13 @@
-import React, { useState } from "react";
-import QueData from "../res/contents/question";
+import React from "react";
+import Layout from "../components/common/Layout";
+import Que from "../components/component/Que";
 
 const QuePage = () => {
-  //hook
-  //질문 넘버링
-  const [q, setQ] = useState(0);
-  return;
-  <div className="questWrap">ddddd</div>;
+  return (
+    <Layout>
+      <Que />
+    </Layout>
+  );
 };
 
 export default QuePage;

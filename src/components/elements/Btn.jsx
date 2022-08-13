@@ -8,6 +8,7 @@ const Btn = (props) => {
       backgroundColor={props.backgroundColor}
       onClick={props.onClick}
       value={props.value}
+      width={props.width}
     >
       {props.children}
     </StyledGlobalButton>
@@ -15,7 +16,7 @@ const Btn = (props) => {
 };
 
 const StyledGlobalButton = styled.button`
-  width: 100px;
+  width: ${(props) => props.width || "100px"};
   height: 45px;
   border: none;
   border-radius: 10px;

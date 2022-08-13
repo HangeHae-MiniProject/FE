@@ -1,17 +1,13 @@
 import React from "react";
-import Btn from "../components/elements/Btn";
-import styles from "../css_modules/LoginPage.module.css"
+import Layout from "../components/common/Layout";
+import Login from "../components/component/Login";
 
 const LoginPage = () => {
   return (
-    <div className={styles.loginWarp}>
-      <h2>LOG IN</h2>
-      <input type="text" placeholder="ID" />
-      <input type="text" placeholder="PW" />
-      <Btn>LOG IN</Btn>
-      <Btn marginLeft="10px">SIGN UP</Btn>
-    </div>
-  )
-}
+    <Layout>
+      <Login />
+    </Layout>
+  );
+};
 
-export default LoginPage
+export default LoginPage;

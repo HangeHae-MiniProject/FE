@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "../../css_modules/Main.module.css";
 import { useNavigate } from "react-router-dom";
+import Btn from "../elements/Btn";
 
 function ResultPage() {
   const nav = useNavigate();
@@ -15,7 +16,7 @@ function ResultPage() {
         <h2>네팔입니다</h2>
         <p>네팔은 코로나19관련 격리면제가 가능한 나라입니다.</p>
         <p>더 자세한 내용은 아래를 통해 확인해보세요.</p>
-        <button onClick={() => nav("/login")}>결과 저장</button>
+        <Btn onClick={() => nav("/login")}>결과 저장</Btn>
       </div>
     </div>
   );

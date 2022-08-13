@@ -1,17 +1,17 @@
 import React from "react";
-import styled from "styled-components"
+import styled from "styled-components";
 
 const Btn = (props) => {
-
   return (
     <StyledGlobalButton
       marginLeft={props.marginLeft}
+      backgroundColor={props.backgroundColor}
+      onClick={props.onClick}
     >
       {props.children}
     </StyledGlobalButton>
-  )
-
-}
+  );
+};
 
 const StyledGlobalButton = styled.button`
   width: 100px;
@@ -19,13 +19,12 @@ const StyledGlobalButton = styled.button`
   border: none;
   border-radius: 10px;
   color: white;
-  background-color: #2309AA;
-  font-family: 'Noto Sans KR', sans-serif;
+  background-color: ${(props) => props.backgroundColor || "#2309aa"};
+  font-family: "Noto Sans KR", sans-serif;
   font-weight: 700;
   cursor: pointer;
 
   margin-left: ${(props) => props.marginLeft};
-`
+`;
 
-
-export default Btn
+export default Btn;

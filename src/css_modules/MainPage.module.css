@@ -1,0 +1,25 @@
+.MainWrap {
+  background-color: #82f9b7;
+
+  box-sizing: border-box;
+  height: calc(100vh-200px);
+  width: 100%;
+  margin: 0 auto;
+}
+
+.MainTitle {
+  font-family: "Noto Sans KR", sans-serif;
+  font-size: 5rem;
+  font-weight: 700;
+  line-height: 6rem;
+  /* margin-top: 100px; */
+  padding-top: 100px;
+}
+
+.BtnWrapper {
+  display: flex;
+  justify-content: center;
+
+  margin-top: 90%;
+  margin-bottom: 5%;
+}

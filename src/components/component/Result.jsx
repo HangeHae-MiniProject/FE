@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 import styles from "../../css_modules/ResultPage.module.css";
 import Btn from "../elements/Btn";

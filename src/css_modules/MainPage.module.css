@@ -1,25 +1,29 @@
 .MainWrap {
   background-color: #82f9b7;
-
   box-sizing: border-box;
-  height: calc(100vh-200px);
+  min-height: 100%;
   width: 100%;
   margin: 0 auto;
 }
 
 .MainTitle {
   font-family: "Noto Sans KR", sans-serif;
-  font-size: 5rem;
+  font-size: 4rem;
   font-weight: 700;
-  line-height: 6rem;
+  line-height: 5.5rem;
+  margin-left: 4%;
+  /* margin이 안먹어서 넣는 padding */
   /* margin-top: 100px; */
   padding-top: 100px;
 }
 
-.BtnWrapper {
-  display: flex;
-  justify-content: center;
+.MainTitle h1 {
+  font-size: 5rem;
+}
 
-  margin-top: 90%;
-  margin-bottom: 5%;
+.btnContainer {
+  position: fixed;
+  left: 50%;
+  transform: translate(-50%, 0);
+  bottom: 5%;
 }

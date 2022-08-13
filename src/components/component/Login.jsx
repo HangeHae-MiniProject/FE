@@ -14,8 +14,8 @@ const Login = () => {
         <input type="text" placeholder="ID" />
         <input type="text" placeholder="PW" />
         <div className={styles.btnWarp}>
-          <Btn onClick={() => navi("/")}>LOG IN</Btn>
-          <Btn onClick={() => navi("/signup")}>SIGN UP</Btn>
+          <Btn width="140px" onClick={() => navi("/")}>LOG IN</Btn>
+          <Btn width="140px" onClick={() => navi("/signup")}>SIGN UP</Btn>
         </div>
       </div>
     </div>

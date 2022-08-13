@@ -7,6 +7,7 @@ const Btn = (props) => {
       marginLeft={props.marginLeft}
       backgroundColor={props.backgroundColor}
       onClick={props.onClick}
+      value={props.value}
     >
       {props.children}
     </StyledGlobalButton>
@@ -15,7 +16,7 @@ const Btn = (props) => {
 
 const StyledGlobalButton = styled.button`
   width: 100px;
-  height: 30px;
+  height: 45px;
   border: none;
   border-radius: 10px;
   color: white;

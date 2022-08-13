@@ -1,3 +1,8 @@
+.container {
+  margin: auto;
+  height: calc(100vh - 200px);
+}
+
 .loginWarp {
   width: 300px;
   padding: 30px;
@@ -12,7 +17,7 @@
   font-family: 'Noto Sans KR', sans-serif;
   font-weight: 900;
   font-size: 20px;
-  margin-bottom: 25px;
+  margin-bottom: 30px;
   letter-spacing: 5px;
 }
 
@@ -20,7 +25,16 @@
   padding: 10px;
   width: calc(100% - 20px);
   margin-bottom: 20px;
-  border: 2px solid black
+  border: 2px solid black;
+  font-family: "Noto Sans KR", sans-serif;
+  font-weight: 700;
+  border-radius: 15px;
+}
+
+.loginWarp input::placeholder {
+  color: black;
+  font-family: "Noto Sans KR", sans-serif;
+  font-weight: 700;
 }
 
 .loginWarp input:focus {
@@ -29,4 +43,9 @@
 
 .loginWarp button {
   width: 100px;
+}
+
+.btnWarp {
+  display: flex;
+  justify-content: space-between;
 }

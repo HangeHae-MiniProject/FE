@@ -1,0 +1,24 @@
+.MainColor {
+  background-color: #82f9b7;
+
+  max-width: 768px;
+  min-height: 100vh;
+
+  margin: 0 auto;
+}
+
+.itemWrapper {
+  border: 1px solid red;
+}
+
+.MainTitle {
+  font-size: 5rem;
+  font-weight: bold;
+}
+
+.MainBtn {
+  border-radius: 25px;
+  border: none;
+
+  font-size: 3rem;
+}

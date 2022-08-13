@@ -1,5 +1,13 @@
-.questWrap {
+.queWrap {
   max-width: 768px;
-  background-color: blue;
+  height: 96vh;
+  border: 1px solid red;
   margin: 0 auto;
+}
+.queItem {
+  width: 70%;
+  height: 20vh;
+  background-color: #8282ff;
+  border-radius: 5px;
+  margin: 2rem auto;
 }

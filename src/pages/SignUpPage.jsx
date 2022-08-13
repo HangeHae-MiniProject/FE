@@ -1,13 +1,13 @@
 import React from "react";
 import Layout from "../components/common/Layout";
-import Join from "../components/component/Join";
+import SignUp from "../components/component/SignUp";
 
-const JoinPage = () => {
+const SignUpPage = () => {
   return (
     <Layout>
-      <Join />
+      <SignUp />
     </Layout>
   );
 };
 
-export default JoinPage;
+export default SignUpPage;

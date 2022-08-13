@@ -1,0 +1,32 @@
+.loginWarp {
+  width: 300px;
+  padding: 30px;
+  margin: 0 auto;
+  text-align: center;
+  border: solid 3px black;
+  border-radius: 20px;
+  ;
+}
+
+.loginWarp h2 {
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 900;
+  font-size: 20px;
+  margin-bottom: 25px;
+  letter-spacing: 5px;
+}
+
+.loginWarp input {
+  padding: 10px;
+  width: calc(100% - 20px);
+  margin-bottom: 20px;
+  border: 2px solid black
+}
+
+.loginWarp input:focus {
+  outline: none;
+}
+
+.loginWarp button {
+  width: 100px;
+}

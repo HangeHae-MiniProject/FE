@@ -1,8 +1,8 @@
 .MainColor {
   background-color: #82f9b7;
 
-  width: 100%;
-  height: 100vh;
+  max-width: 768px;
+  min-height: 100vh;
 
   margin: 0 auto;
 }

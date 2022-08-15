@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 
 import styles from "../../css_modules/ResultPage.module.css";
@@ -7,6 +7,25 @@ import Btn from "../elements/Btn";
 
 function ResultPage() {
   const nav = useNavigate();
+  const param = useParams();
+
+  // 비동기함수(async/await을 사용한)를 통해 get요청을 보낸다.
+  const fetchResults = async () => {
+    const { data } = await axios
+      .get("http://nodeapi.myspaceti.me:8002/api/results/4")
+      .then(function (response) {
+        console.log("연결성공");
+      })
+      .catch(function (error) {
+        console.log("연결 실패ㅜㅜ");
+      });
+    console.log(data);
+  };
+
+  // 생성한 fetchResults함수를 컴포넌트가 mount 됐을 때 실행하기 위해 useEffect사용
+  useEffect(() => {
+    fetchResults();
+  }, []);
   return (
     <div className={styles.ResultWrap}>
       <h1>당신에게 추천하는 나라는</h1>

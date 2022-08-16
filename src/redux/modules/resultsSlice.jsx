@@ -8,7 +8,7 @@ export const getResults = createAsyncThunk(
     try {
       const response = await axios.get(
         // payload는 Result.jsx에서 dispatch를 타고 넘어오는 param의 값
-        `http://nodeapi.myspaceti.me:8002/api/results/${payload}`
+        `/results/${payload}`
       );
       return thunAPI.fulfillWithValue(response.data);
       // 실패

@@ -80,11 +80,16 @@ const Que = () => {
     );
   };
 
+  // console.log(setData);
   //디스패치 유즈이펙트 >> 이거 써줘야 resultID값을 들고옴
   useEffect(() => {
     const setData = { answersArr: ans };
-    dispatch(sendQue(setData));
-  }, []);
+    if (ans.length == 5) {
+      setTimeout(dispatch(sendQue(setData)), 3000);
+    } else {
+      return;
+    }
+  }, [ans]);
 
   //결과화면 누르면 결과페이지 이동
   const callResult = () => {

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "../../css_modules/QuePage.module.css";
 import { Question } from "../../res/contents/question";
 import Btn from "../elements/Btn";
@@ -79,10 +79,15 @@ const Que = () => {
       </div>
     );
   };
-  //결과화면 누르면 결과페이지 이동
-  const callResult = () => {
+
+  //디스패치 유즈이펙트 >> 이거 써줘야 resultID값을 들고옴
+  useEffect(() => {
     const setData = { answersArr: ans };
     dispatch(sendQue(setData));
+  }, []);
+
+  //결과화면 누르면 결과페이지 이동
+  const callResult = () => {
     nav(`/results/${resultId}`);
   };
 

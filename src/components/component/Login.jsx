@@ -1,20 +1,19 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import Btn from "../elements/Btn";
 import styles from "../../css_modules/LoginPage.module.css";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 const Login = () => {
+  //hook
   const navi = useNavigate();
-  const [state, setState] = useState();
+  const dispatch = useDispatch();
 
-  const getVal = (e) => {
-    console.log(e.target.value);
-    setState(e.target.value);
-  };
+  const id_ref = useRef("");
+  const pw_ref = useRef("");
 
   const checkLogin = (e) => {
     e.preventDefault();
-    alert("login");
   };
 
   return (
@@ -22,8 +21,8 @@ const Login = () => {
       <div className={styles.loginWarp}>
         <h2>LOG IN</h2>
         <form onSubmit={checkLogin}>
-          <input type="text" placeholder="ID" value={state} onChange={getVal} />
-          <input type="text" placeholder="PW" />
+          <input type="text" placeholder="ID" ref={id_ref} />
+          <input type="text" placeholder="PW" ref={pw_ref} />
           <div className={styles.btnWarp}>
             <Btn type="button" width="140px">
               LOG IN

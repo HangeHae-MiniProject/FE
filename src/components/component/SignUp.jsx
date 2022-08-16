@@ -7,7 +7,7 @@ import { signUpData } from "../../redux/modules/signUpSlice";
 
 const SignUp = () => {
   const initialState = {
-    userid: "",
+    userId: "",
     nickname: "",
     password: "",
     confirm: "",
@@ -18,8 +18,8 @@ const SignUp = () => {
   const inputRef = useRef()
 
   const dispatch = useDispatch();
-  const responseData = useSelector((state) => state)
-  console.log(responseData)
+  const responseData = useSelector((state) => state.sign)
+
 
   const onChangeHandler = (event) => {
     const { name, value } = event.target;
@@ -28,15 +28,17 @@ const SignUp = () => {
 
   const onSubmitHandler = (event) => {
     event.preventDefault()
+    console.log(signUp)
     dispatch(signUpData(signUp))
+    console.log(responseData)
   }
 
   return (
     <form onSubmit={onSubmitHandler} className={styles.joinWarp}>
       <h2>SIGN UP</h2>
 
-      <input ref={inputRef} /* onBlur={idCheck} */ onChange={onChangeHandler} type="text" placeholder="ID" name="userid" value={signUp.userid} />
-      <span>{signUp.userid === "" ? "아이디를 입력해 주세요" : ""}</span>
+      <input ref={inputRef} /* onBlur={idCheck} */ onChange={onChangeHandler} type="text" placeholder="ID" name="userId" value={signUp.userid} />
+      <span>{signUp.userId === "" ? "아이디를 입력해 주세요" : ""}</span>
 
       <input ref={inputRef} /* onBlur={idCheck} */ onChange={onChangeHandler} type="text" placeholder="NICK NAME" name="nickname" value={signUp.nickname} />
       <span>{signUp.nickname === "" ? "닉네임을 입력 해주세요" : ""}</span>

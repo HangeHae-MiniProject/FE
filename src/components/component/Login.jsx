@@ -1,8 +1,9 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Btn from "../elements/Btn";
 import styles from "../../css_modules/LoginPage.module.css";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { sendLogin } from "../../redux/modules/looginSlice";
 
 const Login = () => {
   //hook
@@ -14,6 +15,12 @@ const Login = () => {
 
   const checkLogin = (e) => {
     e.preventDefault();
+    dispatch(
+      sendLogin({
+        userId: id_ref.current.value,
+        password: pw_ref.current.value,
+      })
+    );
   };
 
   return (

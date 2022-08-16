@@ -28,7 +28,6 @@ const questionSlice = createSlice({
     [sendQue.fulfilled]: (state, { payload }) => {
       state.isLoading = false;
       state.resultId = payload.resultId;
-      console.log(state.resultId);
     },
   },
 });

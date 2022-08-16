@@ -1,7 +1,7 @@
 .MainWrap {
   background-color: #82f9b7;
   box-sizing: border-box;
-  min-height: 100%;
+  height: calc(100vh - 100px);
   width: 100%;
   margin: 0 auto;
 }
@@ -20,10 +20,32 @@
 .MainTitle h1 {
   font-size: 5rem;
 }
+.userCheck {
+  font-size: 1.5rem;
+  color: gray;
+  cursor: pointer;
+  width: auto;
+  display: inline;
+}
+.userCheck:hover {
+  text-decoration: underline;
+}
 
 .btnContainer {
   position: fixed;
   left: 50%;
   transform: translate(-50%, 0);
   bottom: 5%;
+}
+
+.btnContainer button {
+  font-size: 22px;
+}
+
+.btnContainer button:hover {
+  width: 225px;
+  font-size: 24px;
+  font-weight: 700;
+  transition-property: width, font-size, font-weight;
+  transition-duration: 0.5s;
 }

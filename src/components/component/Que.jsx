@@ -84,8 +84,9 @@ const Que = () => {
   //디스패치 유즈이펙트 >> 이거 써줘야 resultID값을 들고옴
   useEffect(() => {
     const setData = { answersArr: ans };
+    //답변의 길이가 질문의 개수와 같을때 디스패치 씀
     if (ans.length == 5) {
-      setTimeout(dispatch(sendQue(setData)), 3000);
+      dispatch(sendQue(setData));
     } else {
       return;
     }

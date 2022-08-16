@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { Action } from "history";
 
 // signUp 값을 보내 준 후 responsData로 값을 반아온다.
 export const signUpData = createAsyncThunk(
@@ -9,8 +10,7 @@ export const signUpData = createAsyncThunk(
       "http://nodeapi.myspaceti.me:8002/api/signup",
       payload
     );
-    console.log(payload);
-    return responsData;
+    return responsData
   }
 );
 
@@ -18,7 +18,10 @@ export const signUpData = createAsyncThunk(
 const signUpSlice = createSlice({
   name: "data",
   initialState: {
-    message: ""
+    userId: "",
+    nickname: "",
+    password: "",
+    confirm: "",
   },
   reducers: {
 
@@ -27,7 +30,10 @@ const signUpSlice = createSlice({
   extraReducers: {
     [signUpData.pending]: (state) => { state.isLoading = true },
     [signUpData.fulfilled]: (state, { payload }) => { state.isLoading = false; state = [...state, payload]; },
-    [signUpData.rejected]: (state) => { state.isLoading = false; },
+    [signUpData.rejected]: (state, action) => {
+      state.isLoading = false;
+      state.eroor = action.payload
+    },
   }
 })
 

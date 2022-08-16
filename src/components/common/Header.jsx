@@ -6,7 +6,9 @@ const Header = () => {
   const nav = useNavigate();
   return (
     <div className={styles.title}>
-      <h1 onClick={() => nav("/")}>TRAPICK</h1>
+      <h1 onClick={() => nav("/")} style={{ cursor: "pointer" }}>
+        TRAPICK
+      </h1>
     </div>
   );
 };

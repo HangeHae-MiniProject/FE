@@ -3,7 +3,7 @@ import Btn from "../elements/Btn";
 import styles from "../../css_modules/SignUpPage.module.css";
 import { useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux/es/exports";
-import signUpSlice from "../../redux/modules/signUpSlice";
+import { signUpData } from "../../redux/modules/signUpSlice";
 
 const SignUp = () => {
   const initialState = {
@@ -18,7 +18,8 @@ const SignUp = () => {
   const inputRef = useRef()
 
   const dispatch = useDispatch();
-  const state = useSelector(state => state.data)
+  const responseData = useSelector((state) => state)
+  console.log(responseData)
 
   const onChangeHandler = (event) => {
     const { name, value } = event.target;
@@ -27,7 +28,7 @@ const SignUp = () => {
 
   const onSubmitHandler = (event) => {
     event.preventDefault()
-    dispatch(signUpSlice.actions.ADD_DATA({ ...signUp }))
+    dispatch(signUpData(signUp))
   }
 
   return (

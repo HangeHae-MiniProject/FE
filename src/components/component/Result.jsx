@@ -1,6 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import axios from "axios";
+
+import { useDispatch, useSelector } from "react-redux";
+import { getResults } from "../../redux/modules/resultsSlice";
 
 import styles from "../../css_modules/ResultPage.module.css";
 import Btn from "../elements/Btn";
@@ -8,36 +10,40 @@ import Btn from "../elements/Btn";
 function ResultPage() {
   const nav = useNavigate();
   const param = useParams();
+  const dispatch = useDispatch();
 
-  // 비동기함수(async/await을 사용한)를 통해 get요청을 보낸다.
-  const fetchResults = async () => {
-    const { data } = await axios
-      .get("http://nodeapi.myspaceti.me:8002/api/results/4")
-      .then(function (response) {
-        console.log("연결성공");
-      })
-      .catch(function (error) {
-        console.log("연결 실패ㅜㅜ");
-      });
-    console.log(data);
-  };
+  // 로딩, 에러상태 + 결과값 store로 부터 가져오기
+  const { isLoading, error } = useSelector((state) => state.result);
 
-  // 생성한 fetchResults함수를 컴포넌트가 mount 됐을 때 실행하기 위해 useEffect사용
+  const userResult = useSelector((state) => state.result.results);
+
+  // 화면에 처음 마운트 되었을때 dispatch실행
   useEffect(() => {
-    fetchResults();
+    dispatch(getResults(param.resultId));
   }, []);
-  return (
-    <div className={styles.ResultWrap}>
-      <h1>당신에게 추천하는 나라는</h1>
-      <img
-        src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0d/d6/96/36/photo4jpg.jpg?w=700&h=-1&s=1"
-        alt="국가이미지"
-      />
-      <h2>네팔입니다</h2>
-      <p>네팔은 코로나19관련 격리면제가 가능한 나라입니다.</p>
-      <p>더 자세한 내용은 아래를 통해 확인해보세요.</p>
-      <Btn onClick={() => nav("/login")}>결과 저장</Btn>
-    </div>
-  );
+  console.log("랜더링?");
+  if (isLoading) {
+    return <div className={styles.ResultWrap}>로딩 중...</div>;
+  } else if (error) {
+    return <div className={styles.ResultWrap}>{error.message}</div>;
+    // userResult가 pending일때 undefined인 경우 예외처리
+  } else if (userResult !== undefined) {
+    return (
+      <div className={styles.ResultWrap}>
+        <h1>당신에게 추천하는 나라는</h1>
+        <img src={userResult.countryInfo.resultImageUrl} alt="국가이미지" />
+        <h2>
+          {userResult.countryInfo.headText}{" "}
+          <span style={{ fontSize: "2.5rem" }}>
+            {userResult.countryInfo.countryName}
+          </span>
+          입니다
+        </h2>
+        <p>더 자세한 내용은 아래를 통해 확인해보세요.</p>
+        <Btn onClick={() => nav("/login")}>결과 저장</Btn>
+      </div>
+    );
+  }
 }
+
 export default ResultPage;

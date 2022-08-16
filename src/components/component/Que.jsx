@@ -83,7 +83,7 @@ const Que = () => {
   const callResult = () => {
     const setData = { answersArr: ans };
     dispatch(sendQue(setData));
-    nav(`/result/${resultId}`);
+    nav(`/results/${resultId}`);
   };
 
   if (!Question[qNum])

@@ -10,7 +10,8 @@ export const signUpData = createAsyncThunk(
       "http://nodeapi.myspaceti.me:8002/api/signup",
       payload
     );
-    return responsData
+    console.log(payload)
+    return responsData.data
   }
 );
 
@@ -18,21 +19,25 @@ export const signUpData = createAsyncThunk(
 const signUpSlice = createSlice({
   name: "data",
   initialState: {
-    userId: "",
-    nickname: "",
-    password: "",
-    confirm: "",
+    message: "",
+    isLoading: false
   },
   reducers: {
 
   },
 
   extraReducers: {
-    [signUpData.pending]: (state) => { state.isLoading = true },
-    [signUpData.fulfilled]: (state, { payload }) => { state.isLoading = false; state = [...state, payload]; },
+    [signUpData.pending]: (state) => {
+      state.isLoading = true
+    },
+    [signUpData.fulfilled]: (state, { payload }) => {
+      state.isLoading = false;
+      state.message = payload.message;
+      return state;
+    },
     [signUpData.rejected]: (state, action) => {
       state.isLoading = false;
-      state.eroor = action.payload
+      state.error = action.payload
     },
   }
 })

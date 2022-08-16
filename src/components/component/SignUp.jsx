@@ -4,6 +4,7 @@ import styles from "../../css_modules/SignUpPage.module.css";
 import { useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux/es/exports";
 import { signUpData } from "../../redux/modules/signUpSlice";
+import { useNavigate } from "react-router-dom";
 
 const SignUp = () => {
   const initialState = {
@@ -12,14 +13,14 @@ const SignUp = () => {
     password: "",
     confirm: "",
   }
-
+  const nav = useNavigate()
   const [signUp, setSignUp] = useState(initialState)
 
   const inputRef = useRef()
 
   const dispatch = useDispatch();
-  const responseData = useSelector((state) => state.sign)
 
+  const responseData = useSelector((state) => state.sign)
 
   const onChangeHandler = (event) => {
     const { name, value } = event.target;
@@ -28,10 +29,15 @@ const SignUp = () => {
 
   const onSubmitHandler = (event) => {
     event.preventDefault()
-    console.log(signUp)
     dispatch(signUpData(signUp))
-    console.log(responseData)
   }
+
+  if (responseData.message == "회원 가입에 성공하였습니다.") {
+    alert(responseData.message)
+    nav("/login")
+  }
+
+  console.log(responseData)
 
   return (
     <form onSubmit={onSubmitHandler} className={styles.joinWarp}>

@@ -1,4 +1,16 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
+
+export const signUp = createAsyncThunk(
+  "signup",
+  async (payload) => {
+    const responsData = await axios.post(
+      "http://nodeapi.myspaceti.me:8002/api/signup",
+      payload
+    );
+    return responsData.message;
+  }
+);
 
 const signUpSlice = createSlice({
   name: "data",
@@ -10,10 +22,9 @@ const signUpSlice = createSlice({
   },
   reducers: {
     ADD_DATA: (state, { payload }) => {
-      console.log(state, payload, { ...state, payload })
+      console.log(state, payload)
       return { ...state, payload }
     }
-    // 동일한 이름을 가진 이름을 체크하여 비밀번호를 내가 입력한 값으로 변경
   }
 })
 

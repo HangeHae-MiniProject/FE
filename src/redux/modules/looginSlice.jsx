@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { getCookie } from "../../res/contents/cookie";
 
 const initialState = {
   userId: "",
@@ -16,9 +17,9 @@ export const sendLogin = createAsyncThunk(
       payload,
       { withCredentials: true }
     );
-    console.log(axios.defaults.headers);
+    // console.log(axios.defaults.headers);
     console.log(responseData);
-    return responseData.data;
+    // return responseData.data;
   }
 );
 

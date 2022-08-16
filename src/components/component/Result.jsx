@@ -21,7 +21,7 @@ function ResultPage() {
   useEffect(() => {
     dispatch(getResults(param.resultId));
   }, []);
-  console.log("랜더링?");
+
   if (isLoading) {
     return <div className={styles.ResultWrap}>로딩 중...</div>;
   } else if (error) {

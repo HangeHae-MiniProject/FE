@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import styles from "../../css_modules/QuePage.module.css";
 import { Question } from "../../res/contents/question";
 import Btn from "../elements/Btn";
+import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { sendQue } from "../../redux/modules/questionSlice";
 
 const Que = () => {
   // ------Hook------
@@ -9,6 +12,9 @@ const Que = () => {
   const [qNum, setQnum] = useState(0);
   //사용자 응답 결과
   const [ans, setAns] = useState([]);
+  const dispatch = useDispatch();
+  const resultId = useSelector((state) => state.question.resultId);
+  const nav = useNavigate();
 
   //-------Funtion----
   //이벤트 핸들러 및 함수
@@ -16,28 +22,89 @@ const Que = () => {
     const value = e.target.value;
     setAns((prev) => [...prev, value]);
     setQnum(qNum + 1);
-    console.log(ans);
-    console.log(qNum);
   };
-  //사용자 응답결과 넘겨주는 함수
-  // const
-  // if (!Question[qNum]) return handleMoveToResult()
-  // return (
+  //선택 버튼이 4개일때
+  const show4Btn = () => {
+    return (
+      <div className={styles.btnWrap}>
+        <Btn
+          onClick={getAnsData}
+          height="7vh"
+          value={Question[qNum].selection[0].value}
+        >
+          {Question[qNum].selection[0].answer}
+        </Btn>
+        <Btn
+          onClick={getAnsData}
+          height="7vh"
+          value={Question[qNum].selection[1].value}
+        >
+          {Question[qNum].selection[1].answer}
+        </Btn>
+        <Btn
+          onClick={getAnsData}
+          height="7vh"
+          value={Question[qNum].selection[2].value}
+        >
+          {Question[qNum].selection[2].answer}
+        </Btn>
+        <Btn
+          onClick={getAnsData}
+          height="7vh"
+          value={Question[qNum].selection[3].value}
+        >
+          {Question[qNum].selection[3].answer}
+        </Btn>
+      </div>
+    );
+  };
+  //선택 버튼이 2개일때
+  const show2Btn = () => {
+    return (
+      <div className={styles.btnWrap}>
+        <Btn
+          onClick={getAnsData}
+          height="13vh"
+          value={Question[qNum].selection[0].value}
+        >
+          {Question[qNum].selection[0].answer}
+        </Btn>
+        <Btn
+          onClick={getAnsData}
+          height="13vh"
+          value={Question[qNum].selection[1].value}
+        >
+          {Question[qNum].selection[1].answer}
+        </Btn>
+      </div>
+    );
+  };
+  //결과화면 누르면 결과페이지 이동
+  const callResult = () => {
+    const setData = { answersArr: ans };
+    dispatch(sendQue(setData));
+    nav(`/result/${resultId}`);
+  };
+
+  if (!Question[qNum])
+    return (
+      <div className={styles.resultBtn}>
+        <button onClick={callResult}>내 결과 보러가기 </button>
+      </div>
+    );
+
   return (
     <div className={styles.queWrap}>
       <div className={styles.queTitle}>당신을 위한 여행국가 찾는 중...🛫 </div>
-      <div>프로그래스 바바바바</div>
+      <progress
+        className={styles.queProBar}
+        value={qNum + 1}
+        max="5"
+      ></progress>
       <div className={styles.queItem}>
         <div className={styles.queNum}>Q{qNum + 1}.</div>
-        <div className={styles.queContent}>{Question[qNum].que}</div>
-        <div className={styles.btnWrap}>
-          <Btn onClick={getAnsData} value={Question[qNum].selection[0].value}>
-            {Question[qNum].selection[0].answer}
-          </Btn>
-          <Btn onClick={getAnsData} value={Question[qNum].selection[1].value}>
-            {Question[qNum].selection[1].answer}
-          </Btn>
-        </div>
+        <div className={styles.queContent}>{Question[qNum].ques}</div>
+        {qNum === 3 ? show4Btn() : show2Btn()}
       </div>
     </div>
   );

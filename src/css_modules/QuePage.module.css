@@ -1,70 +1,5 @@
-/* .queWrap {
-  width: initial;
-  height: 96vh;
-  background-color: #dcebff;
-  margin: 0 auto;
-}
-.queTitle {
-  width: 50%;
-  font-family: "Noto Sans KR", sans-serif;
-  font-weight: 900;
-  font-size: 23px;
-  margin: 1rem 157px;
-}
-.queItem {
-  width: 50%;
-  height: 75vh;
-  border-radius: 10px;
-  background-color: #fff;
-  margin: 1rem auto;
-  padding: 4%;
-  box-shadow: 10px 5px 5px rgba(187, 201, 229, 0.8);
-}
-.queNum {
-  font-family: "Noto Sans KR", sans-serif;
-  font-weight: 900;
-  font-size: 30px;
-  color: #96a5ff;
-  margin: 1rem 0 0 0px;
-}
-.queContent {
-  font-family: "Noto Sans KR", sans-serif;
-  font-weight: 700;
-  letter-spacing: -0.7px;
-  font-size: 25px;
-  color: #333;
-  margin: 4rem 0;
-  line-height: 31px;
-}
-.btnWrap {
-  display: flex;
-  flex-direction: column;
-}
-.btnWrap button {
-  width: 100%;
-  height: 15vh;
-  background-color: #333;
-  color: #fff;
-  margin: 1rem 0 0 0;
-  font-size: 18px;
-  font-weight: 600;
-  transition-property: background-color, color, font-size, font-weight;
-  transition-duration: 0.5s;
-  transition-timing-function: ease-out;
-}
-.btnWrap button:hover {
-  background-color: #82f9b7;
-  color: black;
-  font-size: 20px;
-  font-weight: 700;
-  transition-property: background-color, color, font-size, font-weight;
-  transition-duration: 0.5s;
-  transition-timing-function: ease-out;
-} */
-
 .queWrap {
   width: initial;
-  height: 96vh;
   margin: 0 auto;
 }
 .queTitle {
@@ -74,9 +9,28 @@
   font-size: 23px;
   margin: 1rem 157px;
 }
+
+progress {
+  width: 58%;
+  height: 20px;
+  -webkit-appearance: none;
+}
+
+progress::-webkit-progress-bar {
+  margin: 0 157px;
+  background: #fff;
+  border: 2px solid #96a5ff;
+  border-radius: 10px;
+}
+
+progress::-webkit-progress-value {
+  background-color: #82f9b7;
+  border-radius: 10px;
+}
+
 .queItem {
   width: 50%;
-  height: 75vh;
+  height: 60vh;
   border-radius: 10px;
   background-color: #dcebff;
   margin: 1rem auto;
@@ -96,7 +50,7 @@
   letter-spacing: -0.7px;
   font-size: 25px;
   color: #333;
-  margin: 4rem 0;
+  margin: 2rem 0;
   line-height: 31px;
 }
 .btnWrap {
@@ -105,7 +59,6 @@
 }
 .btnWrap button {
   width: 100%;
-  height: 15vh;
   background-color: #333;
   color: #fff;
   margin: 1rem 0 0 0;
@@ -123,4 +76,36 @@
   transition-property: background-color, color, font-size, font-weight;
   transition-duration: 0.5s;
   transition-timing-function: ease-out;
+}
+.resultBtn {
+  text-align: center;
+  position: relative;
+  top: 11rem;
+  animation: upDown 0.6s linear 0.1s infinite alternate;
+}
+.resultBtn:hover {
+  animation-play-state: paused;
+}
+.resultBtn button {
+  border: none;
+  border-radius: 7px;
+  width: 40%;
+  height: 54px;
+  font-size: 20px;
+  font-weight: bold;
+  background-color: #82f9b7;
+  color: #333;
+  cursor: pointer;
+}
+.resultBtn button:hover {
+  border: 2px solid #2309aa;
+}
+
+@keyframes upDown {
+  0% {
+    transform: translateY(10%);
+  }
+  100% {
+    transform: translateY(40%);
+  }
 }

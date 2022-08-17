@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-// import { sendLogin } from "../../redux/modules/looginSlice";
+import { sendLogin } from "../../redux/modules/looginSlice";
 
 import styles from "../../css_modules/ResultPage.module.css";
 import Btn from "../elements/Btn";
@@ -9,7 +9,11 @@ import Btn from "../elements/Btn";
 function MyResult() {
   const nav = useNavigate();
   const data = useSelector((state) => state.sendLogin);
-  console.log(data);
+
+  useEffect(() => {
+    console.log(data);
+  }, []);
+
   return (
     <div className={styles.ResultWrap}>
       <h1>00님의 결과</h1>

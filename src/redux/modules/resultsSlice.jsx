@@ -1,6 +1,11 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
+const initialState = {
+  isLoading: false,
+  error: "",
+};
+
 export const getResults = createAsyncThunk(
   "getResults",
   async (payload, thunAPI) => {
@@ -20,7 +25,7 @@ export const getResults = createAsyncThunk(
 
 const resultsSlice = createSlice({
   name: "results",
-  initialState: { isLoading: false, error: "" },
+  initialState,
   reducers: {},
   extraReducers: {
     [getResults.pending]: (state) => {

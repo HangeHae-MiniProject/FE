@@ -23,6 +23,20 @@ export const getResults = createAsyncThunk(
   }
 );
 
+export const saveUserInfo = createAsyncThunk(
+  "saveUserInfo",
+  async (payload, thunkAPI) => {
+    console.log(payload);
+    try {
+      const response = await axios.post("/login/withsave", payload.userId, {
+        headers: { token: payload.isToken },
+      });
+      console.log(response);
+      return;
+    } catch {}
+  }
+);
+
 const resultsSlice = createSlice({
   name: "results",
   initialState,

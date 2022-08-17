@@ -3,6 +3,7 @@ import axios from "axios";
 import jwt_decode from "jwt-decode";
 
 const initialState = {
+  isLoading: true,
   token: "",
   message: "",
   statusCode: 0,
@@ -21,7 +22,10 @@ export const sendLogin = createAsyncThunk(
       localStorage.setItem("jwtToken", token);
       setAutorizationToken(token);
       return responseData.data;
-    } catch {}
+    } catch {
+      alert("등록된 회원 정보가 없습니다.");
+      return;
+    }
   }
 );
 // HttpRequest를 보낼 때 헤더에 포함시키기
@@ -37,7 +41,7 @@ const loginSlice = createSlice({
   initialState,
   reducers: {
     setCurrentUser: (state, action) => {
-      state.tocken = action.payload;
+      state.token = action.payload;
       state.message = action.message;
     },
   },
@@ -52,9 +56,9 @@ const loginSlice = createSlice({
       state.statusCode = payload.statusCode;
       state.message = payload.message;
     },
-    [sendLogin.rejected]: (state) => {
-      state.isLoading = false;
-    },
+    // [sendLogin.rejected]: (state) => {
+    //   state.isLoading = false;
+    // },
   },
 });
 

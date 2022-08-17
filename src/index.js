@@ -65,11 +65,9 @@ if (localStorage.jwtToken) {
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <BrowserRouter>
-    <CookiesProvider>
-      <Provider store={store}>
-        <App />
-      </Provider>
-    </CookiesProvider>
+    <Provider store={store}>
+      <App />
+    </Provider>
   </BrowserRouter>
 );
 

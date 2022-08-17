@@ -3,7 +3,7 @@ import Btn from "../elements/Btn";
 import styles from "../../css_modules/LoginPage.module.css";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { sendLogin } from "../../redux/modules/looginSlice";
+import { sendLogin } from "../../redux/modules/loginSlice";
 
 const Login = () => {
   //hook
@@ -31,14 +31,15 @@ const Login = () => {
 
   //alert 함수 호출 조건
   if (!data.isLoading && callData) {
+    console.log(data);
     if (data.statusCode === 200) {
       //로그인도 있고 결과도 있는 경우
       alert(data.message);
-      nav("/mypage");
+      // nav("/result");
     } else if (data.statusCode === 400) {
       //로그인은 있지만 결과가 없는 경우
       alert(data.message);
-      nav("/mypage");
+      // nav("/result/resultId");
     } else {
       alert("회원정보 없음");
       return;

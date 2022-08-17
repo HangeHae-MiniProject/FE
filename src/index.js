@@ -6,9 +6,9 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./redux/config/configStore";
-import { setAutorizationToken } from "./redux/modules/looginSlice";
+import { setAutorizationToken } from "./redux/modules/loginSlice";
 import jwt_decode from "jwt-decode";
-import { setCurrentUser } from "./redux/modules/looginSlice";
+import { setCurrentUser } from "./redux/modules/loginSlice";
 
 // --------- 배경 애니메이션 JS START ---------
 const colors = ["#3CC157", "#2AA7FF", "#1B1B1B", "#FCBC0F", "#F85F36"];

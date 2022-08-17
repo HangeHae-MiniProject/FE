@@ -1,22 +1,20 @@
+//비회원 결과 화면 창
 import React, { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-
 import { useDispatch, useSelector } from "react-redux";
-import { getResults } from "../../redux/modules/resultsSlice";
+import { getResults } from "../../../redux/modules/resultsSlice";
+import styles from "../../../css_modules/ResultPage.module.css";
+import Btn from "../../elements/Btn";
 
-import styles from "../../css_modules/ResultPage.module.css";
-import Btn from "../elements/Btn";
-
-function ResultPage() {
+function NoTokenResult() {
   const nav = useNavigate();
   const param = useParams();
   const dispatch = useDispatch();
 
   // 로딩, 에러상태 + 결과값 store로 부터 가져오기
   const { isLoading, error } = useSelector((state) => state.result);
-
   const userResult = useSelector((state) => state.result.results);
-  const isToken = localStorage.getItem("jwtToken");
+
   // 화면에 처음 마운트 되었을때 dispatch실행
   useEffect(() => {
     dispatch(getResults(param.resultId));
@@ -40,20 +38,15 @@ function ResultPage() {
           입니다
         </h2>
         <p>더 자세한 내용은 아래를 통해 확인해보세요.</p>
+
         <div className={styles.BtnWrapper}>
-          {isToken === null ? (
-            <Btn onClick={() => nav("/login")} width="150px" height="35px">
-              결과 저장
-            </Btn>
-          ) : (
-            <Btn onClick={() => nav("/mypage")} width="150px" height="35px">
-              결과 보러가기
-            </Btn>
-          )}
+          <Btn onClick={() => nav("/login")} width="150px" height="35px">
+            결과 저장
+          </Btn>
         </div>
       </div>
     );
   }
 }
 
-export default ResultPage;
+export default NoTokenResult;

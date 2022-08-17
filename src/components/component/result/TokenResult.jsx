@@ -1,7 +1,12 @@
 import React from "react";
-
+import UserResult from "./UserResult";
+import UserNoResult from "./UserNoResult";
+import { useLocation } from "react-router-dom";
 const TokenResult = () => {
-  return <div>여긴 토큰</div>;
+  const location = useLocation();
+  const resultId = location.state.resultId;
+
+  return <div>{resultId !== 0 ? <UserResult /> : <UserNoResult />}</div>;
 };
 
 export default TokenResult;

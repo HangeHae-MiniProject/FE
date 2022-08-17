@@ -7,6 +7,7 @@ const initialState = {
   token: "",
   message: "",
   statusCode: 0,
+  resultId: 0,
 };
 
 //post 청크
@@ -18,6 +19,7 @@ export const sendLogin = createAsyncThunk(
       const token = responseData.data.token.split(" ")[1];
       localStorage.setItem("jwtToken", token);
       setAutorizationToken(token);
+      console.log(responseData.data);
       return responseData.data;
     } catch {
       alert("등록된 회원 정보가 없습니다.");
@@ -50,6 +52,7 @@ const loginSlice = createSlice({
       state.isLoading = false;
       const token = payload.token.split(" ")[1];
       state.token = jwt_decode(token);
+      state.resultId = payload.resultId;
       state.statusCode = payload.statusCode;
       state.message = payload.message;
     },
@@ -60,4 +63,5 @@ const loginSlice = createSlice({
 });
 
 export default loginSlice;
+//리듀스 액션 수출
 export const { setCurrentUser } = loginSlice.actions;

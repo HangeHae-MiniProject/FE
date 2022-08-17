@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import instance from "../../res/contents/instance";
 import jwt_decode from "jwt-decode";
 
 const initialState = {
@@ -8,19 +8,13 @@ const initialState = {
   message: "",
   statusCode: 0,
 };
-//스토리지에 있는 토큰 전송
-const sotorageToken = localStorage.getItem("jwtToken");
 
 //post 청크
 export const sendLogin = createAsyncThunk(
   "loginSlice/sendLogin",
   async (payload) => {
     try {
-      const responseData = await axios.post(
-        "http://nodeapi.myspaceti.me:8002/api/login/withsave",
-        payload,
-        { headers: { token: sotorageToken } }
-      );
+      const responseData = await instance.post("/login/withsave", payload);
       const token = responseData.data.token.split(" ")[1];
       localStorage.setItem("jwtToken", token);
       setAutorizationToken(token);
@@ -34,9 +28,9 @@ export const sendLogin = createAsyncThunk(
 // HttpRequest를 보낼 때 헤더에 포함시키기
 export function setAutorizationToken(token) {
   if (token) {
-    axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+    instance.defaults.headers.common["token"] = `Bearer ${token}`;
   } else {
-    delete axios.defaults.headers.common["Authorization"];
+    delete instance.defaults.headers.common["token"];
   }
 }
 const loginSlice = createSlice({

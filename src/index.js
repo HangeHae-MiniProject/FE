@@ -6,9 +6,7 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./redux/config/configStore";
-import axios from "axios";
 import { setAutorizationToken } from "./redux/modules/looginSlice";
-import { CookiesProvider } from "react-cookie";
 import jwt_decode from "jwt-decode";
 import { setCurrentUser } from "./redux/modules/looginSlice";
 
@@ -17,9 +15,6 @@ const colors = ["#3CC157", "#2AA7FF", "#1B1B1B", "#FCBC0F", "#F85F36"];
 
 const numBalls = 50;
 const balls = [];
-
-axios.defaults.baseURL = "http://nodeapi.myspaceti.me:8002/api";
-axios.defaults.withCredentials = true;
 
 for (let i = 0; i < numBalls; i++) {
   let ball = document.createElement("div");

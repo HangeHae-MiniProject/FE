@@ -32,10 +32,15 @@ const Login = () => {
   //alert 함수 호출 조건
   if (!data.isLoading && callData) {
     if (data.statusCode === 200) {
+      //로그인도 있고 결과도 있는 경우
       alert(data.message);
       nav("/mypage");
-    } else if (data.token === 400) {
-      alert("로그인 정보가 없습니다.");
+    } else if (data.statusCode === 400) {
+      //로그인은 있지만 결과가 없는 경우
+      alert(data.message);
+      nav("/mypage");
+    } else {
+      alert("회원정보 없음");
       return;
     }
   }

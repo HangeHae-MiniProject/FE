@@ -7,7 +7,10 @@ import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./redux/config/configStore";
 import axios from "axios";
+import { setAutorizationToken } from "./redux/modules/looginSlice";
 import { CookiesProvider } from "react-cookie";
+import jwt_decode from "jwt-decode";
+import { setCurrentUser } from "./redux/modules/looginSlice";
 
 // --------- 배경 애니메이션 JS START ---------
 const colors = ["#3CC157", "#2AA7FF", "#1B1B1B", "#FCBC0F", "#F85F36"];
@@ -54,6 +57,10 @@ balls.forEach((el, i, ra) => {
   );
 });
 // --------- 배경 애니메이션 JS END ---------
+if (localStorage.jwtToken) {
+  setAutorizationToken(localStorage.jwtToken);
+  store.dispatch(setCurrentUser(jwt_decode(localStorage.jwtToken)));
+}
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

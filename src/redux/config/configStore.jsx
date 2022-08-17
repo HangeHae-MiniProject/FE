@@ -2,7 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import signUpSlice from "../modules/signUpSlice";
 import resultsSlice from "../modules/resultsSlice";
 import questionSlice from "../modules/questionSlice";
-import loginSlice from "../modules/looginSlice";
+import loginSlice from "../modules/loginSlice";
 
 const store = configureStore({
   reducer: {

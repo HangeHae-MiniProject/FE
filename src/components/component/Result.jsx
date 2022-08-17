@@ -16,7 +16,7 @@ function ResultPage() {
   const { isLoading, error } = useSelector((state) => state.result);
 
   const userResult = useSelector((state) => state.result.results);
-
+  const isToken = localStorage.getItem("jwtToken");
   // 화면에 처음 마운트 되었을때 dispatch실행
   useEffect(() => {
     dispatch(getResults(param.resultId));
@@ -41,9 +41,19 @@ function ResultPage() {
         </h2>
         <p>더 자세한 내용은 아래를 통해 확인해보세요.</p>
         <div className={styles.BtnWrapper}>
-          <Btn onClick={() => nav("/login")} width="150px" height="35px">
-            결과 저장
-          </Btn>
+          {isToken === null ? (
+            <Btn onClick={() => nav("/login")} width="150px" height="35px">
+              결과 저장
+            </Btn>
+          ) : (
+            <Btn
+              onClick={() => nav(`/mypage/${param.resultId}`)}
+              width="150px"
+              height="35px"
+            >
+              결과 보러가기
+            </Btn>
+          )}
         </div>
       </div>
     );

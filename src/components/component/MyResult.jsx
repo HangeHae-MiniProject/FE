@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { sendLogin } from "../../redux/modules/looginSlice";
+import { useSelector } from "react-redux";
+// import { sendLogin } from "../../redux/modules/looginSlice";
 
 import styles from "../../css_modules/ResultPage.module.css";
 import Btn from "../elements/Btn";
@@ -20,7 +20,9 @@ function MyResult() {
       <h2>이탈리아입니다.</h2>
       <p>이탈리아은 이런도시입니다. 저런도시고 이렇다고 합니다</p>
       {/* 버튼 클릭시 로컬스토리지에 저장된 토큰 삭제... */}
-      <Btn onClick={() => localStorage.removeItem("key")}>로그아웃</Btn>
+      <Btn onClick={() => localStorage.removeItem("key").then(nav("/"))}>
+        로그아웃
+      </Btn>
     </div>
   );
 }

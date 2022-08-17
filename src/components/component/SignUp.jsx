@@ -36,35 +36,36 @@ const SignUp = () => {
 
   const onChangeHandler = (event) => {
     const { name, value } = event.target;
+    //useEffect 시용히여 진행
+    // 아이디 유효성
+    const check = () => {
+      if (event.target.name === "userId") {
+        if (idRule.test(signUp.userId) && signUp.userId !== "") {
+          setIdMsg("아이디는 영문과 숫자로만 가능합니다.")
+        } else if (!idRule.test(signUp.userId)) {
+          setIdMsg("")
+        }
+      }
+      // 비밀번호 유효성
+      if (!pwRule.test(signUp.password) && signUp.password !== "") {
+        setPwMsg("비밀번호는 5자 이상이여야 합니다.")
+      } else if (pwRule.test(signUp.password)) {
+        setPwMsg("테스트")
+      }
+
+      // 비밀번호 확인 유효성
+      if (signUp.password !== "" && signUp.password !== signUp.confirm) {
+        setConfirmMsg("비밀번호가 다릅니다.")
+      } else if (signUp.password == signUp.confirm) {
+        setConfirmMsg("")
+      }
+    }
+    console.log(signUp)
     setSignUp({ ...signUp, [name]: value })
 
   }
 
-  //useEffect 시용히여 진행
-  // 아이디 유효성
-  const check = () => {
-    if (event.target.name === "userId") {
-      if (idRule.test(signUp.userId) && signUp.userId !== "") {
-        setIdMsg("아이디는 영문과 숫자로만 가능합니다.")
-      } else if (!idRule.test(signUp.userId)) {
-        setIdMsg("")
-      }
-    }
-    // 비밀번호 유효성
-    if (!pwRule.test(signUp.password) && signUp.password !== "") {
-      setPwMsg("비밀번호는 5자 이상이여야 합니다.")
-    } else if (pwRule.test(signUp.password)) {
-      setPwMsg("테스트")
-    }
 
-    // 비밀번호 확인 유효성
-    if (signUp.password !== "" && signUp.password !== signUp.confirm) {
-      setConfirmMsg("비밀번호가 다릅니다.")
-    } else if (signUp.password == signUp.confirm) {
-      setConfirmMsg("")
-    }
-  }
-  console.log(signUp)
 
 
   // const check = () => {

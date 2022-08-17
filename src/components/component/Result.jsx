@@ -40,7 +40,11 @@ function ResultPage() {
           입니다
         </h2>
         <p>더 자세한 내용은 아래를 통해 확인해보세요.</p>
-        <Btn onClick={() => nav("/login")}>결과 저장</Btn>
+        <div className={styles.BtnWrapper}>
+          <Btn onClick={() => nav("/login")} width="150px" height="35px">
+            결과 저장
+          </Btn>
+        </div>
       </div>
     );
   }

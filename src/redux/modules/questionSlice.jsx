@@ -1,17 +1,13 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
+import instance from "../../res/contents/instance";
 
 //결과값 초기화
 const initialState = { resultId: 0 };
-
 //등록청크
 export const sendQue = createAsyncThunk(
   "questionSlice/sendQue",
   async (payload) => {
-    const responsData = await axios.post(
-      "http://nodeapi.myspaceti.me:8002/api/results/submit",
-      payload
-    );
+    const responsData = await instance.post("/results/submit", payload);
     return responsData.data;
   }
 );

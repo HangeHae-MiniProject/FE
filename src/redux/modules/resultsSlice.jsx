@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import instance from "../../res/contents/instance";
 
 const initialState = {
   isLoading: false,
@@ -11,7 +11,7 @@ export const getResults = createAsyncThunk(
   async (payload, thunAPI) => {
     // 성공
     try {
-      const response = await axios.get(
+      const response = await instance.get(
         // payload는 Result.jsx에서 dispatch를 타고 넘어오는 param의 값
         `/results/${payload}`
       );
@@ -20,20 +20,6 @@ export const getResults = createAsyncThunk(
     } catch (error) {
       return thunAPI.rejectWithValue(error);
     }
-  }
-);
-
-export const saveUserInfo = createAsyncThunk(
-  "saveUserInfo",
-  async (payload, thunkAPI) => {
-    console.log(payload);
-    try {
-      const response = await axios.post("/login/withsave", payload.userId, {
-        headers: { token: payload.isToken },
-      });
-      console.log(response);
-      return;
-    } catch {}
   }
 );
 

@@ -46,11 +46,7 @@ function ResultPage() {
               결과 저장
             </Btn>
           ) : (
-            <Btn
-              onClick={() => nav(`/mypage/${param.resultId}`)}
-              width="150px"
-              height="35px"
-            >
+            <Btn onClick={() => nav("/mypage")} width="150px" height="35px">
               결과 보러가기
             </Btn>
           )}

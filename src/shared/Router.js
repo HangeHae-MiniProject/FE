@@ -6,8 +6,6 @@ import LoginPage from "../pages/LoginPage";
 import QuePage from "../pages/QuePage";
 import ResultPage from "../pages/ResultPage";
 
-import MyResultPage from "../pages/MyResultPage";
-
 const Router = () => {
   return (
     <Routes>
@@ -16,8 +14,6 @@ const Router = () => {
       <Route path="/signup" element={<SignUpPage />} />
       <Route path="/question" element={<QuePage />} />
       <Route path="/results/:resultId" element={<ResultPage />} />
-      <Route path="/mypage" element={<MyResultPage />} />
-      <Route path="/mypage/:resultId" element={<MyResultPage />} />
     </Routes>
   );
 };

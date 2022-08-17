@@ -8,6 +8,8 @@ const initialState = {
   message: "",
   statusCode: 0,
 };
+//스토리지에 있는 토큰 전송
+const sotorageToken = localStorage.getItem("jwtToken");
 
 //post 청크
 export const sendLogin = createAsyncThunk(
@@ -15,8 +17,9 @@ export const sendLogin = createAsyncThunk(
   async (payload) => {
     try {
       const responseData = await axios.post(
-        "http://nodeapi.myspaceti.me:8002/api/login",
-        payload
+        "http://nodeapi.myspaceti.me:8002/api/login/withsave",
+        payload,
+        { headers: { token: sotorageToken } }
       );
       const token = responseData.data.token.split(" ")[1];
       localStorage.setItem("jwtToken", token);

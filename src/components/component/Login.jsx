@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import Btn from "../elements/Btn";
 import styles from "../../css_modules/LoginPage.module.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { sendLogin } from "../../redux/modules/loginSlice";
 
@@ -15,6 +15,9 @@ const Login = () => {
 
   const id_ref = useRef("");
   const pw_ref = useRef("");
+  //메인화면에서 로그인 접근하는 경우 옵셔널 체이닝으로 ""처리 진행/ 있으면 resultId가져오기
+  const location = useLocation();
+  const resultId = location.state?.resultId || 0;
 
   useEffect(() => {
     if (callData) {
@@ -22,6 +25,7 @@ const Login = () => {
         sendLogin({
           userId: id_ref.current.value,
           password: pw_ref.current.value,
+          resultId: resultId,
         })
       );
     } else {
@@ -31,16 +35,16 @@ const Login = () => {
 
   //alert 함수 호출 조건
   if (!data.isLoading && callData) {
-    console.log(data);
     if (data.statusCode === 200) {
       //로그인도 있고 결과도 있는 경우
       alert(data.message);
-      // nav("/result");
+      nav(`/results/${resultId}`, { state: { resultId: resultId } });
     } else if (data.statusCode === 400) {
       //로그인은 있지만 결과가 없는 경우
       alert(data.message);
-      // nav("/result/resultId");
-    } else {
+      nav(`/results/${resultId}`, { state: { resultId: 0 } });
+    } else if (data.statusCode === 401) {
+      //회원정보가 있지만 비번 잘 못 입력 오류 및 정말 회원정보 없음
       alert("회원정보 없음");
       return;
     }
@@ -63,7 +67,11 @@ const Login = () => {
             <Btn type="button" width="140px" height="40px">
               LOG IN
             </Btn>
-            <Btn onClick={() => nav("/signup")} width="140px" height="40px">
+            <Btn
+              onClick={() => nav("/signup", { state: { resultId: resultId } })}
+              width="140px"
+              height="40px"
+            >
               SIGN UP
             </Btn>
           </div>

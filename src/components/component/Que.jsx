@@ -94,7 +94,7 @@ const Que = () => {
 
   //결과화면 누르면 결과페이지 이동
   const callResult = () => {
-    nav(`/results/${resultId}`);
+    nav(`/results/${resultId}`, { state: { resultId: resultId } });
   };
 
   if (!Question[qNum])

@@ -1,8 +1,9 @@
 //비회원 결과 화면 창
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getResults } from "../../../redux/modules/resultsSlice";
+import { addResultId } from "../../../redux/modules/resultsSlice";
 import styles from "../../../css_modules/ResultPage.module.css";
 import Btn from "../../elements/Btn";
 
@@ -20,6 +21,9 @@ function NoTokenResult() {
     dispatch(getResults(param.resultId));
   }, []);
 
+  // useEffect(() => {
+  //   dispatch(addResultId(getResultId));
+  // }, []);
   if (isLoading) {
     return <div className={styles.ResultWrap}>로딩 중...</div>;
   } else if (error) {
@@ -40,7 +44,13 @@ function NoTokenResult() {
         <p>더 자세한 내용은 아래를 통해 확인해보세요.</p>
 
         <div className={styles.BtnWrapper}>
-          <Btn onClick={() => nav("/login")} width="150px" height="35px">
+          <Btn
+            onClick={() =>
+              nav("/login", { state: { resultId: userResult.resultId } })
+            }
+            width="150px"
+            height="35px"
+          >
             결과 저장
           </Btn>
         </div>

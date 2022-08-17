@@ -7,43 +7,45 @@ import { sendLogin } from "../../redux/modules/looginSlice";
 
 const Login = () => {
   //hook
-  const navi = useNavigate();
+  const nav = useNavigate();
   const dispatch = useDispatch();
   const data = useSelector((state) => state.login);
 
-  const [callData, setCallData] = useState(0);
+  const [callData, setCallData] = useState(false);
 
   const id_ref = useRef("");
   const pw_ref = useRef("");
 
   useEffect(() => {
-    if (callData > 0) {
+    if (callData) {
       dispatch(
         sendLogin({
           userId: id_ref.current.value,
           password: pw_ref.current.value,
         })
       );
-      setTimeout(() => {
-        alramInfo();
-      }, 2000);
     } else {
       return;
     }
   }, [callData]);
 
+  //alert 함수 호출 조건
+  if (!data.isLoading && callData) {
+    if (data.statusCode === 200) {
+      alert(data.message);
+      nav("/mypage");
+    } else if (data.token === 400) {
+      alert("로그인 정보가 없습니다.");
+      return;
+    }
+  }
+
   const checkLogin = (e) => {
     e.preventDefault();
-    setCallData(1);
+    //useEffect 랜더링 조건
+    setCallData(true);
   };
-  const alramInfo = () => {
-    console.log("hhi");
-    if (data.statusCode == 200) {
-      alert("안녕");
-    } else {
-      alert("잘가");
-    }
-  };
+
   return (
     <div className={styles.container}>
       <div className={styles.loginWarp}>
@@ -52,10 +54,10 @@ const Login = () => {
           <input type="text" placeholder="ID" ref={id_ref} />
           <input type="password" placeholder="PW" ref={pw_ref} />
           <div className={styles.btnWarp}>
-            <Btn type="button" width="140px">
+            <Btn type="button" width="140px" height="40px">
               LOG IN
             </Btn>
-            <Btn onClick={() => navi("/signup")} width="140px">
+            <Btn onClick={() => nav("/signup")} width="140px" height="40px">
               SIGN UP
             </Btn>
           </div>

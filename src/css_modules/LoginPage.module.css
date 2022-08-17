@@ -8,13 +8,14 @@
   padding: 30px;
   margin: 0 auto;
   text-align: center;
-  border: solid 3px black;
+  background-color: #fff;
+  border: solid 3px #333;
   border-radius: 20px;
-  ;
+  box-shadow: 10px 5px 5px rgba(187, 201, 229, 0.8);
 }
 
 .loginWarp h2 {
-  font-family: 'Noto Sans KR', sans-serif;
+  font-family: "Noto Sans KR", sans-serif;
   font-weight: 900;
   font-size: 20px;
   margin-bottom: 30px;
@@ -44,4 +45,11 @@
 .btnWarp {
   display: flex;
   justify-content: space-between;
+}
+.btnWarp button:hover {
+  background-color: #82f9b7;
+  color: black;
+  transition-property: background-color, color;
+  transition-duration: 0.5s;
+  transition-timing-function: ease-out;
 }

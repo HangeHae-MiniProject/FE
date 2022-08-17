@@ -80,3 +80,23 @@ balls.forEach((el, i, ra) => {
   );
 });
 // --------- 배경 애니메이션 JS END ---------
+if (localStorage.jwtToken) {
+  setAutorizationToken(localStorage.jwtToken);
+  store.dispatch(setCurrentUser(jwt_decode(localStorage.jwtToken)));
+}
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(
+  <BrowserRouter>
+    <CookiesProvider>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </CookiesProvider>
+  </BrowserRouter>
+);
+
+// If you want to start measuring performance in your app, pass a function
+// to log results (for example: reportWebVitals(console.log))
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+reportWebVitals();

@@ -6,6 +6,8 @@
   border: solid 3px black;
   border-radius: 20px;
   font-family: "Noto Sans KR", sans-serif;
+  background-color: white;
+  box-shadow: 10px 5px 5px rgba(187, 201, 229, 0.8);
 }
 
 .joinWarp h2 {
@@ -15,22 +17,30 @@
   letter-spacing: 5px;
 }
 
-.joinWarp input {
+.inputWarp {
+  margin-bottom: 20px;
+}
+
+.inputWarp span {
+  color: rgb(250, 79, 79);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.inputWarp input {
   padding: 10px;
   width: calc(100% - 20px);
-  margin-bottom: 20px;
+  margin-bottom: 5px;
   border: 2px solid black;
-  font-family: "Noto Sans KR", sans-serif;
   font-weight: 700;
   border-radius: 15px;
 }
 
-.joinWarp input::placeholder {
+.inputWarp input::placeholder {
   color: black;
-  font-family: "Noto Sans KR", sans-serif;
   font-weight: 700;
 }
 
-.joinWarp input:focus {
+.inputWarp input:focus {
   outline: none;
 }

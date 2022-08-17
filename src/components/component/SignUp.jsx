@@ -30,48 +30,47 @@ const SignUp = () => {
 
   // 정규식 리스트
   // 아이디 정규식 공백, 특수문자 불가
-  // 비밀번호 정규식 영 + 숫 5자리 ~ 1 자리
+  // 비밀번호 정규식 영 + 숫 5자리 ~ 15 자리
   const idRule = /[ \{\}\[\]\/?.,;:|\)*~`!^\-_+┼<>@\#$%&\'\"\\\(\=\ㄱ-ㅎ가-힣ㅏ-ㅣ]/gi;
   const pwRule = /^[a-zA-Z0-9]{5,15}$/;
 
   const onChangeHandler = (event) => {
     const { name, value } = event.target;
-    //useEffect 시용히여 진행
+
     // 아이디 유효성
-    const check = () => {
-      if (event.target.name === "userId") {
-        if (idRule.test(signUp.userId) && signUp.userId !== "") {
-          setIdMsg("아이디는 영문과 숫자로만 가능합니다.")
-        } else if (!idRule.test(signUp.userId)) {
-          setIdMsg("")
-        }
+    if (name === "userId") {
+      if (idRule.test(value) && value !== "") {
+        setIdMsg("아이디는 영문과 숫자로만 가능합니다.")
+      } else if (!idRule.test(value)) {
+        setIdMsg("")
       }
+
       // 비밀번호 유효성
-      if (!pwRule.test(signUp.password) && signUp.password !== "") {
-        setPwMsg("비밀번호는 5자 이상이여야 합니다.")
-      } else if (pwRule.test(signUp.password)) {
-        setPwMsg("테스트")
+    } else if (name === "password") {
+      if (!pwRule.test(value) && value !== "") {
+        setPwMsg("비밀번호는 5자 이상 ~ 15자 이하여야 합니다.")
+      } else if (pwRule.test(value)) {
+        setPwMsg("")
+      }
+
+      //2차 비밀번호 작성 후 비밀번호 작성 시 유효성 체크 로직
+      if (value !== "" && signUp.confirm !== value) {
+        setConfirmMsg("비밀번호가 다릅니다.")
+      } else if (signUp.confirm == value) {
+        setConfirmMsg("")
       }
 
       // 비밀번호 확인 유효성
-      if (signUp.password !== "" && signUp.password !== signUp.confirm) {
+    } else if (name === "confirm") {
+      if (signUp.password !== "" && signUp.password !== value) {
         setConfirmMsg("비밀번호가 다릅니다.")
-      } else if (signUp.password == signUp.confirm) {
+      } else if (signUp.password == value) {
         setConfirmMsg("")
       }
     }
-    console.log(signUp)
+
     setSignUp({ ...signUp, [name]: value })
-
   }
-
-
-
-
-  // const check = () => {
-
-  // }
-
 
   const onSubmitHandler = (event) => {
     event.preventDefault()
@@ -85,13 +84,14 @@ const SignUp = () => {
     nav("/login")
   } else if (responseData.stateCode === 400) {
     alert(responseData.message)
-    window.location.reload()
+    // window.location.reload()
   }
 
 
   return (
     <form onSubmit={onSubmitHandler} className={styles.joinWarp}>
       <h2>SIGN UP</h2>
+
       <div className={styles.inputWarp}>
         <input ref={inputRef} onChange={onChangeHandler} type="text" placeholder="ID" name="userId" value={signUp.userid} />
         <span>{idMsg}</span>

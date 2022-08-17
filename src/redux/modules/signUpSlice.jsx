@@ -10,7 +10,7 @@ export const signUpData = createAsyncThunk(
       "http://nodeapi.myspaceti.me:8002/api/signup",
       payload
     );
-    console.log(payload)
+    console.log(responsData)
     return responsData.data
   }
 );
@@ -20,6 +20,7 @@ const signUpSlice = createSlice({
   name: "data",
   initialState: {
     message: "",
+    statusCode: 0,
     isLoading: false
   },
   reducers: {
@@ -33,6 +34,7 @@ const signUpSlice = createSlice({
     [signUpData.fulfilled]: (state, { payload }) => {
       state.isLoading = false;
       state.message = payload.message;
+      state.stateCode = payload.statusCode
       return state;
     },
     [signUpData.rejected]: (state, action) => {

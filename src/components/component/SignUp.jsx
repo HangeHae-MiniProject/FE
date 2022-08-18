@@ -34,8 +34,9 @@ const SignUp = () => {
   // 아이디 정규식 공백, 특수문자 불가
   // 비밀번호 정규식 영 + 숫 5자리 ~ 15 자리
   const idRule =
-    /[ \{\}\[\]\/?.,;:|\)*~`!^\-_+┼<>@\#$%&\'\"\\\(\=\ㄱ-ㅎ가-힣ㅏ-ㅣ]/gi;
-  const pwRule = /^[a-zA-Z0-9]{5,15}$/;
+    /[ \{\}\[\]\/?.,;:|\)*~`!^\-_+┼<>@\#$%&\'\"\\\(\=\ㄱ-ㅎ가-힣ㅏ-ㅣ]{6,12}/gi;
+  const pwRule = /^[a-zA-Z0-9]{5,12}$/;
+  const nickRule = /^[ㄱ-ㅎ가-힣ㅏ-ㅣa-zA-Z0-9]{6,12}$/;
 
   const onChangeHandler = (event) => {
     const { name, value } = event.target;
@@ -47,11 +48,23 @@ const SignUp = () => {
       } else if (!idRule.test(value)) {
         setIdMsg("");
       }
+    }
 
-      // 비밀번호 유효성
-    } else if (name === "password") {
+    // 닉네임 유효성
+    else if (name === "nickname") {
+      if (!nickRule.test(value)) {
+        setNickMsg("닉네임은 6글자 이상 12글자 이하 입니다.")
+      } else if (nickRule.test(value)) {
+        setNickMsg("")
+      }
+    }
+
+    // 비밀번호 유효성
+    else if (name === "password") {
       if (!pwRule.test(value) && value !== "") {
         setPwMsg("비밀번호는 5자 이상 ~ 15자 이하여야 합니다.");
+      } else if (value.includes(signUp.userId)) {
+        setPwMsg("비밀번호에 ID를 포함 할 수 없습니다.")
       } else if (pwRule.test(value)) {
         setPwMsg("");
       }
@@ -62,9 +75,9 @@ const SignUp = () => {
       } else if (signUp.confirm == value) {
         setConfirmMsg("");
       }
-
-      // 비밀번호 확인 유효성
-    } else if (name === "confirm") {
+    }
+    // 비밀번호 확인 유효성
+    else if (name === "confirm") {
       if (signUp.password !== "" && signUp.password !== value) {
         setConfirmMsg("비밀번호가 다릅니다.");
       } else if (signUp.password == value) {

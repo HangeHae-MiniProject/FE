@@ -41,6 +41,7 @@ const loginSlice = createSlice({
   reducers: {
     setCurrentUser: (state, action) => {
       state.token = action.payload;
+      state.resultId = action.resultId;
       state.message = action.message;
     },
   },

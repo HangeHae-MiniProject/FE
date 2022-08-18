@@ -22,9 +22,9 @@ function Main() {
           </Btn>
         </div>
       </div>
-      <div onClick={() => nav("/login")} className={styles.userCheck}>
+      {/* <div onClick={() => nav("/login")} className={styles.userCheck}>
         이미 회원이신가요?
-      </div>
+      </div> */}
     </div>
   );
 }

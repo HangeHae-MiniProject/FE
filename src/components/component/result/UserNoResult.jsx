@@ -10,7 +10,7 @@ const UserNoResult = () => {
     <div className={styles.ResultWrap}>
       <h2>이런..!테스트결과가 없습니다! 테스트 하러 이동하실까요?</h2>
       <div className={styles.BtnWrapper}>
-        <Btn onClick={() => nav("/question")} width="150px" height="35px">
+        <Btn onClick={() => nav("/question")} width="160px" height="47px">
           테스트 하러가기
         </Btn>
       </div>

@@ -22,20 +22,7 @@ export const getResults = createAsyncThunk(
     }
   }
 );
-// export const getUserResults = createAsyncThunk(
-//   "getUserResults",
-//   async (payload, thunAPI) => {
-//     // 성공
-//     try {
-//       const response = await instance.get("/mypage/myanswers");
-//       console.log(response);
-//       return thunAPI.fulfillWithValue(response.data);
-//       // 실패
-//     } catch (error) {
-//       return thunAPI.rejectWithValue(error);
-//     }
-//   }
-// );
+
 const resultsSlice = createSlice({
   name: "results",
   initialState,

@@ -11,20 +11,19 @@ function Main() {
       <div className={styles.MainTitle}>
         당신을 위한
         <h1>추천 여행지는?</h1>
-        <div onClick={() => nav("/login")} className={styles.userCheck}>
-          이미 회원이신가요?
+        <div className={styles.btnContainer}>
+          <Btn
+            onClick={() => nav("/question")}
+            backgroundColor="black"
+            width="220px"
+            height="3rem"
+          >
+            테스트하러 가기
+          </Btn>
         </div>
       </div>
-
-      <div className={styles.btnContainer}>
-        <Btn
-          onClick={() => nav("/question")}
-          backgroundColor="black"
-          width="220px"
-          height="3rem"
-        >
-          테스트하러 가기
-        </Btn>
+      <div onClick={() => nav("/login")} className={styles.userCheck}>
+        이미 회원이신가요?
       </div>
     </div>
   );

@@ -1,10 +1,15 @@
 .MainWrap {
   background-color: #82f9b7;
+  background-image: url("../../public/main_img.png");
+  background-size: 55%;
+  background-repeat: no-repeat;
+  background-position: 20rem 20rem;
   box-sizing: border-box;
   height: calc(100vh - 150px);
   width: 100%;
   margin: 0 auto;
   border-radius: 10px;
+  padding: 10px 30px;
 }
 
 .MainTitle {
@@ -12,9 +17,6 @@
   font-size: 4rem;
   font-weight: 700;
   line-height: 5.5rem;
-  margin-left: 4%;
-  /* margin이 안먹어서 넣는 padding */
-  /* margin-top: 100px; */
   padding-top: 60px;
 }
 
@@ -22,21 +24,17 @@
   font-size: 5rem;
 }
 .userCheck {
-  font-size: 1.5rem;
-  color: gray;
+  font-size: 1.3rem;
+  color: #535453;
   cursor: pointer;
   width: auto;
-  display: inline;
 }
 .userCheck:hover {
   text-decoration: underline;
 }
 
 .btnContainer {
-  position: fixed;
-  left: 50%;
-  transform: translate(-50%, 0);
-  bottom: 11%;
+  margin: 0 0 10px 0;
 }
 
 .btnContainer button {

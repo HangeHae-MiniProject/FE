@@ -27,6 +27,23 @@ export const sendLogin = createAsyncThunk(
     }
   }
 );
+
+export const sendMainLogin = createAsyncThunk(
+  "loginSlice/sendMainLogin",
+  async (payload) => {
+    try {
+      const responseData = await instance.post("/login", payload);
+      const token = responseData.data.token.split(" ")[1];
+      localStorage.setItem("jwtToken", token);
+      setAutorizationToken(token);
+      console.log(responseData.data);
+      return responseData.data;
+    } catch {
+      alert("등록된 회원 정보가 없습니다.");
+      return;
+    }
+  }
+);
 // HttpRequest를 보낼 때 헤더에 포함시키기
 export function setAutorizationToken(token) {
   if (token) {
@@ -50,6 +67,20 @@ const loginSlice = createSlice({
       state.isLoading = true;
     },
     [sendLogin.fulfilled]: (state, { payload }) => {
+      state.isLoading = false;
+      const token = payload.token.split(" ")[1];
+      state.token = jwt_decode(token);
+      state.resultId = payload.resultId;
+      state.statusCode = payload.statusCode;
+      state.message = payload.message;
+    },
+    // [sendLogin.rejected]: (state) => {
+    //   state.isLoading = false;
+    // },
+    [sendMainLogin.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [sendMainLogin.fulfilled]: (state, { payload }) => {
       state.isLoading = false;
       const token = payload.token.split(" ")[1];
       state.token = jwt_decode(token);

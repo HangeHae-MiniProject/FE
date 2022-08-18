@@ -4,13 +4,13 @@ import styles from "../../css_modules/LoginPage.module.css";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { sendLogin } from "../../redux/modules/loginSlice";
+import { sendMainLogin } from "../../redux/modules/loginSlice";
 
 const Login = () => {
   //hook
   const nav = useNavigate();
   const dispatch = useDispatch();
   const data = useSelector((state) => state.login);
-
   const [callData, setCallData] = useState(false);
 
   const id_ref = useRef("");
@@ -18,35 +18,61 @@ const Login = () => {
   //메인화면에서 로그인 접근하는 경우 옵셔널 체이닝으로 ""처리 진행/ 있으면 resultId가져오기
   const location = useLocation();
   const resultId = location.state?.resultId || 0;
+  const type = location.state.type;
 
   useEffect(() => {
     if (callData) {
-      dispatch(
-        sendLogin({
-          userId: id_ref.current.value,
-          password: pw_ref.current.value,
-          resultId: resultId,
-        })
-      );
+      if (type === "login") {
+        dispatch(
+          sendLogin({
+            userId: id_ref.current.value,
+            password: pw_ref.current.value,
+            resultId: resultId,
+          })
+        );
+      } else if (type === "main_login") {
+        dispatch(
+          sendMainLogin({
+            userId: id_ref.current.value,
+            password: pw_ref.current.value,
+          })
+        );
+      }
     } else {
       return;
     }
   }, [callData]);
 
   //alert 함수 호출 조건
-  if (!data.isLoading && callData) {
-    if (data.statusCode === 200) {
-      //로그인도 있고 결과도 있는 경우
-      alert(data.message);
-      nav(`/results/${resultId}`, { state: { resultId: resultId } });
-    } else if (data.statusCode === 400) {
-      //로그인은 있지만 결과가 없는 경우
-      alert(data.message);
-      nav(`/results/${resultId}`, { state: { resultId: 0 } });
-    } else if (data.statusCode === 401) {
-      //회원정보가 있지만 비번 잘 못 입력 오류 및 정말 회원정보 없음
-      alert("회원정보 없음");
-      return;
+  if (type === "login") {
+    if (!data.isLoading && callData) {
+      if (data.statusCode === 200) {
+        //로그인도 있고 결과도 있는 경우
+        alert(data.message);
+        nav(`/results/${resultId}`, { state: { resultId: resultId } });
+      } else if (data.statusCode === 400) {
+        //로그인은 있지만 결과가 없는 경우
+        alert(data.message);
+        nav(`/results/${resultId}`, { state: { resultId: 0 } });
+      } else if (data.statusCode === 401) {
+        //회원정보가 있지만 비번 잘 못 입력 오류 및 정말 회원정보 없음
+        alert("회원정보 없음");
+        return;
+      }
+    }
+  } else if (type === "main_login") {
+    if (!data.isLoading && callData) {
+      if (data.statusCode === 200) {
+        //로그인도 있고 결과도 있는 경우
+        alert(data.message);
+        nav(`/results/${data.resultId}`, {
+          state: { resultId: data.resultId },
+        });
+      } else if (data.statusCode === 401) {
+        //회원정보가 있지만 비번 잘 못 입력 오류 및 정말 회원정보 없음
+        alert("회원정보 없음");
+        return;
+      }
     }
   }
 

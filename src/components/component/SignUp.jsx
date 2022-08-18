@@ -96,7 +96,7 @@ const SignUp = () => {
   // 회원 가입 결과 alert 로직
   if (responseData.stateCode === 200) {
     alert(responseData.message);
-    nav("/login", { state: { resultId: resultId } });
+    nav("/login", { state: { resultId: resultId, type: "login" } });
   } else if (responseData.stateCode === 400) {
     alert(responseData.message);
     // window.location.reload()

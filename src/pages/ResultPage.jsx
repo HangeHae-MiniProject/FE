@@ -7,7 +7,6 @@ import TokenResult from "../components/component/result/TokenResult";
 //토큰값 / resultID
 function ResultPage() {
   const token = localStorage.getItem("jwtToken");
-  console.log(token);
   return (
     <Layout data={token}>
       {/* 토큰값이 없는 경우 / 토큰값이 있는 경우 */}

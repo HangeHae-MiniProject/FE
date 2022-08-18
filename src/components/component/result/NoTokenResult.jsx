@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getResults } from "../../../redux/modules/resultsSlice";
-import { addResultId } from "../../../redux/modules/resultsSlice";
+import Loding from "../../elements/Loading";
 import styles from "../../../css_modules/ResultPage.module.css";
 import Btn from "../../elements/Btn";
 
@@ -25,7 +25,11 @@ function NoTokenResult() {
   //   dispatch(addResultId(getResultId));
   // }, []);
   if (isLoading) {
-    return <div className={styles.ResultWrap}>로딩 중...</div>;
+    return (
+      <div className={styles.ResultWrap}>
+        <Loding />
+      </div>
+    );
   } else if (error) {
     return <div className={styles.ResultWrap}>{error.message}</div>;
     // userResult가 pending일때 undefined인 경우 예외처리

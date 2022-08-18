@@ -53,7 +53,7 @@ function NoTokenResult() {
               nav("/login", { state: { resultId: userResult.resultId } })
             }
             width="150px"
-            height="35px"
+            height="3rem"
           >
             결과 저장
           </Btn>

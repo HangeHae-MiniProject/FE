@@ -36,7 +36,7 @@
   position: fixed;
   left: 50%;
   transform: translate(-50%, 0);
-  bottom: 5%;
+  bottom: 11%;
 }
 
 .btnContainer button {
@@ -47,6 +47,7 @@
   width: 225px;
   font-size: 24px;
   font-weight: 700;
+  background-color: #2309aa;
   transition-property: width, font-size, font-weight;
   transition-duration: 0.5s;
 }

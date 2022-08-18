@@ -31,10 +31,14 @@ const UserResult = ({ data }) => {
         <h1>{userInfo.nickname}님의 결과</h1>
         <img src={userResult.countryInfo.resultImageUrl} alt="국가이미지" />
         <h2>{userResult.countryInfo.countryName}입니다.</h2>
-        <p>{userResult.countryInfo.detailText}</p>
+        <p style={{ lineHeight: "1.5rem" }}>
+          {userResult.countryInfo.detailText}
+        </p>
         {/* 버튼 클릭시 로컬스토리지에 저장된 토큰 삭제... */}
         <div className={styles.BtnWrapper}>
-          <Btn onClick={logout}>로그아웃</Btn>
+          <Btn onClick={logout} width="160px" height="47px">
+            로그아웃
+          </Btn>
         </div>
       </div>
     );

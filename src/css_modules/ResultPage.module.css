@@ -35,7 +35,7 @@
   font-size: 1.3rem;
   padding: 10px;
   cursor: pointer;
-  ransition: background-color, color 0.5s ease-out;
+  transition: background-color, color 0.5s ease-out;
 }
 .BtnWrapper button:hover {
   font-size: 1.3rem;

@@ -1,9 +1,10 @@
 .MainWrap {
   background-color: #82f9b7;
   box-sizing: border-box;
-  height: calc(100vh - 100px);
+  height: calc(100vh - 150px);
   width: 100%;
   margin: 0 auto;
+  border-radius: 10px;
 }
 
 .MainTitle {
@@ -14,7 +15,7 @@
   margin-left: 4%;
   /* margin이 안먹어서 넣는 padding */
   /* margin-top: 100px; */
-  padding-top: 100px;
+  padding-top: 60px;
 }
 
 .MainTitle h1 {

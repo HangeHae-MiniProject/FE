@@ -19,7 +19,6 @@ export const sendLogin = createAsyncThunk(
       const token = responseData.data.token.split(" ")[1];
       localStorage.setItem("jwtToken", token);
       setAutorizationToken(token);
-      console.log(responseData.data);
       return responseData.data;
     } catch {
       alert("등록된 회원 정보가 없습니다.");

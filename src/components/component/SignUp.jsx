@@ -53,9 +53,9 @@ const SignUp = () => {
     // 닉네임 유효성
     else if (name === "nickname") {
       if (!nickRule.test(value)) {
-        setNickMsg("닉네임은 6글자 이상 12글자 이하 입니다.")
+        setNickMsg("닉네임은 6글자 이상 12글자 이하 입니다.");
       } else if (nickRule.test(value)) {
-        setNickMsg("")
+        setNickMsg("");
       }
     }
 
@@ -64,7 +64,7 @@ const SignUp = () => {
       if (!pwRule.test(value) && value !== "") {
         setPwMsg("비밀번호는 5자 이상 ~ 15자 이하여야 합니다.");
       } else if (value.includes(signUp.userId)) {
-        setPwMsg("비밀번호에 ID를 포함 할 수 없습니다.")
+        setPwMsg("비밀번호에 ID를 포함 할 수 없습니다.");
       } else if (pwRule.test(value)) {
         setPwMsg("");
       }
@@ -96,7 +96,7 @@ const SignUp = () => {
   // 회원 가입 결과 alert 로직
   if (responseData.stateCode === 200) {
     alert(responseData.message);
-    nav("/login", { state: { resultId: resultId } });
+    nav("/login", { state: { resultId: resultId, type: "login" } });
   } else if (responseData.stateCode === 400) {
     alert(responseData.message);
     // window.location.reload()

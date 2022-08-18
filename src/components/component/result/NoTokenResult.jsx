@@ -50,7 +50,9 @@ function NoTokenResult() {
         <div className={styles.BtnWrapper}>
           <Btn
             onClick={() =>
-              nav("/login", { state: { resultId: userResult.resultId } })
+              nav("/login", {
+                state: { resultId: userResult.resultId, type: "login" },
+              })
             }
             width="150px"
             height="35px"
